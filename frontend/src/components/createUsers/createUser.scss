@@ -1,0 +1,43 @@
+.create {
+    &__title {
+        text-align: center;
+    }
+
+    &__form {
+        width: 600px;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 1px solid black;
+        padding: 40px;
+    }
+
+    label {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        input {
+            padding: 10px 20px;
+            border: 1px solid black;
+            outline: none;
+        }
+
+        select,
+        option {
+            padding: 10px 20px;
+            border: 1px solid black;
+            outline: none;
+
+        }
+    }
+
+    button {
+        padding: 8px 16px;
+        background: green;
+        color: white;
+        border-radius: 4px;
+        border: 1px solid green;
+    }
+}
