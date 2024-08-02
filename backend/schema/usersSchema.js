@@ -51,7 +51,7 @@ export const validationUser = (body) => {
     age: Joi.number().required(),
     url: Joi.string().required(),
     gender: Joi.string().required(),
-    isActive: Joi.boolean().required(),
+    isActive: Joi.boolean().allow(true),
     budget: Joi.number().allow(0),
   });
   return schema.validate(body);
