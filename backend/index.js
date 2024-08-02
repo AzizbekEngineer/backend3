@@ -3,10 +3,12 @@ import cors from "cors";
 import mongoose from "mongoose";
 import User from "./routes/users.js";
 import dotenv from "dotenv";
+import morgan from "morgan";
 dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(morgan("dev"));
 
 mongoose
   .connect(process.env.MONGODB_URL)

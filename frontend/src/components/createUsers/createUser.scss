@@ -9,8 +9,10 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-        border: 1px solid black;
+        border: 1px solid #ddd;
+        border-radius: 5px;
         padding: 40px;
+        background: black;
     }
 
     label {
@@ -18,16 +20,20 @@
         flex-direction: column;
         gap: 2px;
 
+        span {
+            color: white;
+        }
+
         input {
             padding: 10px 20px;
-            border: 1px solid black;
+            border: 1px solid #ddd;
             outline: none;
         }
 
         select,
         option {
             padding: 10px 20px;
-            border: 1px solid black;
+            border: 1px solid #ddd;
             outline: none;
 
         }

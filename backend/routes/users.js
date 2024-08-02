@@ -1,24 +1,31 @@
 import express from "express";
-import { Users } from "../schema/usersSchema.js";
+import { Users, validationUser } from "../schema/usersSchema.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const user = await Users.find();
-    if (!user.length) {
+    const { limit = 2, skip = 1 } = req.query;
+
+    const users = await Users.find()
+      .skip((skip - 1) * limit)
+      .limit(limit);
+
+    if (!users.length) {
       return res.status(400).json({
         msg: "Malumot topilmadi",
         variant: "error",
         payload: null,
       });
     }
+    const total = await Users.countDocuments();
     res.status(200).json({
       msg: "Barcha malumotlar ",
       variant: "success",
-      payload: user,
-      total: user.lenght,
+      payload: users,
+      total: Math.ceil(total / limit),
     });
-  } catch {
+  } catch (error) {
+    console.error(error);
     return res.status(500).json({
       msg: "Serverda xatolik",
       variant: "error",
@@ -29,6 +36,14 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
+    const { error } = validationUser(req.body);
+    if (error) {
+      return res.status(400).json({
+        msg: error.details[0].message,
+        variant: "error",
+        payload: null,
+      });
+    }
     const existUser = await Users.exists({ username: req.body.username });
     if (existUser) {
       return res.status(400).json({

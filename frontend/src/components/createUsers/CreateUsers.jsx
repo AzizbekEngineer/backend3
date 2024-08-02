@@ -102,17 +102,6 @@ const CreateUsers = () => {
           </select>
         </label>
         <label>
-          <span>Active Status</span>
-          <select
-            name="isActive"
-            value={formData.isActive}
-            onChange={handleChange}
-          >
-            <option value="true">True</option>
-            <option value="false">False</option>
-          </select>
-        </label>
-        <label>
           <span>Budget</span>
           <input
             type="number"
